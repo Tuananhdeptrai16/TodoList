@@ -1,38 +1,322 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.todolist {
+  padding: 100px;
+  width: 600px;
+  height: 600px;
+}
+.todolist__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.todolist__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  background: #713fff;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(113, 63, 255, 0.25);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+  padding: 13px 30px;
+}
+.todolist__button:hover {
+  opacity: 0.8;
+}
+.todolist__icon {
+  width: 20px;
+  height: 20px;
+}
+.addtodo {
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  background: #fff;
+  z-index: 1;
+}
+.addtodo__content {
+  padding: 20px;
+}
+.todolist__heading {
+  color: #0a1629;
+  font-size: 36px;
+  font-weight: 700;
+}
+.addtodo__priority li {
+  border: 1px solid #ffbd21;
+  border-radius: 10px;
+  color: #ffbd21;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 0;
+  text-align: center;
+  text-transform: capitalize;
+  width: 90px;
+  list-style: none;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.addtodo__priority .high {
+  border: 1px solid #f73446;
+  color: #f73446;
+}
+.addtodo__priority .low {
+  color: #0ac947;
+  border: 1px solid #0ac947;
+}
+.addtodo__priority ul {
+  display: flex;
+  gap: 30px;
+  padding: 0;
+}
+.addtodo__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.addtodo__exit {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.addtodo__exit:hover {
+  scale: 1.1;
+}
+.addtodo__heading {
+  color: #121212;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.addtodo__task {
+  display: flex;
+  flex-direction: column;
+}
+.addtodo__task label {
+  color: #7d8592;
+  font-size: 14px;
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.addtodo__input {
+  background: #fff;
+  border: 1px solid #d8e0f0;
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(184, 200, 224, 0.222);
+  font-weight: 400;
+  outline: none;
+  padding: 16px 18px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 700;
+}
+.addtodo__input::placeholder {
+  color: #7d8592;
+  font-size: 14px;
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+.addtodo__priority--title {
+  color: #7d8592;
+  font-size: 14px;
+  font-weight: 700;
+}
+.addtodo__add--button {
+  margin-top: 30px;
+  background: #713fff;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(113, 63, 255, 0.25);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+  padding: 13px 30px;
+  transition: all 0.2s ease;
+}
+.addtodo__add--button:hover {
+  background: red;
+}
+.addtodo__submit {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.task__card {
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+}
+.task__action {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.task__flex {
+  display: flex;
+  flex-direction: column;
+}
+.task__title {
+  color: #91929e;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+.task__name {
+  color: #0a1629;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  width: 100px;
+}
+.task__level {
+  color: #0ac947;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.high__level {
+  color: #f73446;
+}
+.medium__level {
+  color: #ffbd21;
+}
+.task__changeStatus {
+  background: hsla(217, 9%, 53%, 0.14);
+  border: none;
+  border-radius: 8px;
+  color: #7d8592;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  outline: none;
+  padding: 7px 14px;
+  width: 100px;
+}
+.task__changeStatus:hover {
+  scale: 1.1;
+}
+.task__edit:hover {
+  scale: 1.1;
+}
+.task__delete:hover {
+  scale: 1.1;
+}
+.task__card + .task__card {
+  margin-top: 20px;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal__content {
+  padding: 30px;
+  background: #fff;
+  border-radius: 20px;
+}
+.modal__title {
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+}
+.modal__action {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal__delete {
+  background: #713fff;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(113, 63, 255, 0.25);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+  padding: 13px 30px;
+}
+.modal__delete:hover {
+  scale: 1.1;
+}
+.modal__cancel {
+  padding: 13px 30px;
+  background: #fff;
+  border: 1px solid #d8e0f0;
+  box-shadow: 0 1px 2px rgba(184, 200, 224, 0.222);
+  color: #7d8592;
+  font-weight: 400;
+  border-radius: 10px;
+}
+.modal__cancel:hover {
+  scale: 1.1;
+}
+.active-high {
+  background: red;
+  color: #f0f2f5 !important;
+}
+.active-medium {
+  background: #ffbd21;
+  color: #f0f2f5 !important;
+}
+.active-low {
+  background: #0ac947;
+  color: #fff !important;
+}
+.text-high {
+  color: #f73446;
+}
+.text-medium {
+  color: #ffbd21;
+}
+.text-low {
+  color: #0ac947;
+}
+.data--todo {
+  background: #ffbd21;
+  color: #fff;
+}
+.data--inprogress {
+  background: #f73446;
+  color: #fff;
+}
+.data--done {
+  background: #0ac947;
+  color: #fff;
 }
